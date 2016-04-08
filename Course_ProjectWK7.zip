@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication39
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            char letter;
+            char[] word = "christ".ToCharArray();
+            char[] guessed = new char[26];
+            int score = 0;
+            int index = 0;
+            bool found = false;
+            //outpt greeting
+            Console.WriteLine("Welcome to the game of hangman!\n");
+            Console.WriteLine("\n-----------------------");
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < word.Length; j++)
+                {
+                    for (int k = 0; k < index; k++)
+                    {
+                        if (word[j] == guessed[k])
+                            found = true;
+                    }
+                    if (found == true)
+                    {
+                        Console.Write(word[j]);
+                        found = false;
+                    }
+                    else
+                        Console.Write("*");
+                }
+                Console.Write("\nEnter a letter please; ");
+                letter = char.Parse(Console.ReadLine());
+                   if (word.Contains(letter))
+                {
+                    Console.WriteLine("\nYou guessed correctly!");
+                    guessed[index] = letter;
+                    index++;
+                }
+                else
+                {
+                Console.WriteLine("\nYou guessed incorrectly.");
+                   score++;
+                }
+
+            }
+            Console.WriteLine("Your score is: " + score);
+
+            Console.ReadLine();//keep window open
+
+        }
+    }
+}
